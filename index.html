@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>$GUTTER</title>
+  <meta name="description" content="$GUTTER — join the sewer. Minimal one‑pager like bangers.dev" />
+  <link rel="icon" href="assets/mascot.jpg" />
+  <style>
+    :root{
+      --bg:#0b0b0b; --fg:#f3f3f3; --muted:#bfbfbf; --accent:#ffd166; --card:#101010; --border:#1d1d1d;
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+    .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:32px}
+    .card{width:min(720px,100%);text-align:center;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 24px}
+    .logo{width:120px;height:120px;border-radius:50%;object-fit:cover;border:1px solid var(--border);box-shadow:0 10px 30px rgba(0,0,0,.35);}
+    h1{font-size:56px;margin:16px 0 6px;letter-spacing:.5px}
+    .ticker{color:var(--muted);font-weight:700;margin-bottom:16px}
+    .btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:14px 0 8px}
+    .btn{appearance:none;border:1px solid var(--border);background:#141414;color:var(--fg);padding:12px 18px;border-radius:12px;font-weight:800;text-decoration:none}
+    .btn:hover{transform:translateY(-1px)}
+    .ca{margin-top:14px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#0f0f0f;border:1px solid var(--border);border-radius:10px;padding:10px}
+    small{display:block;color:var(--muted);margin-top:16px}
+    footer{position:fixed;bottom:10px;left:0;right:0;text-align:center;color:#8c8c8c;font-size:12px}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="card">
+      <img class="logo" src="assets/mascot.jpg" alt="GUTTER logo" />
+      <h1>GUTTER</h1>
+      <div class="ticker">$GUTTER</div>
+      <div class="btns">
+        <a class="btn" id="x" target="_blank" rel="noopener">Join X</a>
+        <a class="btn" id="buy" target="_blank" rel="noopener">Buy $GUTTER</a>
+        <a class="btn" id="chart" target="_blank" rel="noopener">Chart</a>
+      </div>
+      <div class="ca">
+        CA: <span id="caText">COMING SOON</span>
+        <button id="copy" class="btn" style="margin-left:10px;padding:8px 12px;">Copy</button>
+      </div>
+      <small>One‑pager inspired by bangers.dev. DYOR. No expectations.</small>
+    </div>
+  </main>
+  <footer>© <span id="year"></span> GUTTER</footer>
+  <script>
+    // ---- EDIT THESE ----
+    const LINKS = {
+      x: "https://x.com/REPLACE",
+      buy: "https://pump.fun/coin/REPLACE",
+      chart: "https://dexscreener.com/solana/REPLACE"
+    };
+    const CONTRACT = "COMING SOON";
+    // --------------------
+    document.getElementById('x').href = LINKS.x;
+    document.getElementById('buy').href = LINKS.buy;
+    document.getElementById('chart').href = LINKS.chart;
+    document.getElementById('caText').textContent = CONTRACT;
+    document.getElementById('copy').onclick = async () => {
+      try { await navigator.clipboard.writeText(CONTRACT);
+        document.getElementById('copy').textContent = "Copied!";
+        setTimeout(()=>document.getElementById('copy').textContent="Copy",1200);
+      } catch(e){ alert('Copy failed'); }
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
